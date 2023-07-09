@@ -1,5 +1,7 @@
 package com.person.controller;
 
+
+
 import com.alibaba.druid.filter.AutoLoad;
 import com.github.pagehelper.PageInfo;
 import com.person.service.personService;
@@ -27,6 +29,7 @@ public class personController {
         model.addAttribute("page",page);
 
         return "person_list";
+
     }
     @RequestMapping(value = "/toadd",method = RequestMethod.POST)
     public String add(person person){

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>update</title>
+</head>
+<body>
+<form th:action="@{/update}" method="post">
+    <table>
+        <tr>修改:</tr>
+        <tr>
+
+         <input type="hidden" name="personID" th:value="${person.personID}">
+        </tr>
+        <tr>
+            <th>Name:<input type="text" name="Name" th:value="${person.Name}"></th>
+        </tr>
+
+        <tr>
+            <th> Sex: <input type=" text" name="Sex" th:value="${person.Sex}"></th>
+
+        </tr>
+        <tr>
+            <th> birthday:<input type="text" name="birthday" th:value= "${person.birthday}"></th>
+        </tr>
+        <tr>
+            <th>IDCard:<input type="text" name="IDCard" th:value= "${person.IDCard}"></th>
+        </tr>
+        <td><input type="submit" value="确定"/></td>
+    </table>
+
+</form>
+
+</body>
+</html>

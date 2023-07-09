@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>person</title>
+    <style>
+        div {
+            width: 1000px;
+            height: 40px;
+            margin: 30px;
+            border: 1px solid black;
+            box-shadow: aqua;
+
+        }
+
+        table {
+            width: 1000px;
+            height: 40px;
+            margin: 30px;
+            border: 1px solid black;
+            box-shadow: aqua;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+    <form th:action="@{/selectByName}" method="get">
+        姓名:<input type="text" name="Name" th:value="${session.a}">
+        身份证号：<input type="text" name="IDCard" th:value="${session.b}">
+        <input type="submit" value="查询">
+
+    </form>
+
+
+    <a th:href="@{/add}">
+        <button>添加</button>
+    </a>
+
+</div>
+
+
+<table border="1">
+    <tr>
+        <th>序号</th>
+        <th>姓名</th>
+        <th>性别</th>
+        <th>出生年月</th>
+        <th>身份证号码</th>
+        <th>操作</th>
+    </tr>
+    <tr th:each="list : ${page.list}">
+        <td th:text="${list.personID}">a</td>
+        <td th:text="${list.Name}">b</td>
+        <td th:text="${list.Sex}">c</td>
+        <td th:text="${list.birthday}">d</td>
+        <td th:text="${list.IDCard}">d</td>
+        <td><a th:href="@{'/delete/'+${list.personID}}">删除</a>|<a th:href="@{'/update/'+${list.personID}}">修改</a>
+        </td>
+    </tr>
+    <tr th:align="center">
+        <td colspan="6">
+        <span th:if="${page.hasPreviousPage}">
+    <a th:href="@{/person/page/1}">首页</a>
+        <a th:href="@{'/person/page/'+${page.prePage}}">上一页</a>
+        </span>
+            <span th:each="num : ${page.navigatepageNums}">
+        <a th:if="${page.pageNum==num}"
+           th:href="@{'/person/page/'+${num}}" th:text="'['+${num}+']'" style="color:
+        red;"></a>
+    <a th:if="${page.pageNum!=num}" th:href="@{'/person/page/'+${num}}" th:text="${num} "></a>
+        </span>
+            <span th:if="${page.hasNextPage}">
+        <a th:href="@{'/person/page/'+${page.nextPage}}">下一页</a>
+            <a th:href="@{'/person/page/'+${page.pages}}">末页</a>
+</span>
+        </td>
+    </tr>
+
+
+</table>
+
+</body>
+</html>
